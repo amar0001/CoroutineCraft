@@ -14,7 +14,10 @@ This template is built to help you:
 ---
 
 ## 🏗️ Project Structure
+
+
 com.amar.coroutinecraft/
+
 ├── data/
 │   ├── remote/             # Network APIs (Retrofit/Ktor)
 │   └── repository/         # Data repository implementation
@@ -35,8 +38,6 @@ com.amar.coroutinecraft/
 
 
 
-
----
 
 ## 🧠 Concepts Covered
 
