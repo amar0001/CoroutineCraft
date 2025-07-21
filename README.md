@@ -19,29 +19,17 @@ com.amar.coroutinecraft/
 
 ├── data/
 │ ├── remote/ # Network APIs (Retrofit/Ktor)
-
 │ ├── repository/ # Data repository implementation
-
 ├── domain/
-
 │ ├── model/ # Domain models
-
 │ ├── repository/ # Interfaces
-
 │ └── usecase/ # Business logic
-
 ├── presentation/
-
 │ ├── ui/ # Screens (Home, Details, etc.)
-
 │ ├── viewmodel/ # ViewModels using StateFlow
-
 │ └── components/ # Reusable UI components
-
 ├── di/ # Hilt modules
-
 ├── util/ # DispatcherProvider, ResultWrapper, etc.
-
 └── MainActivity.kt # Compose Navigation Host
 
 
