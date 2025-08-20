@@ -37,13 +37,24 @@ This template is built to help you:
 - Modular project structure
 
 ---
-
-## 🧪 Coming Soon (Next Steps)
-
-- [ ] Retrofit or Ktor integration (your choice)
-- [ ] Pagination + Error Retry
-- [ ] Theme switching (Light/Dark)
-- [ ] Room DB or DataStore integration
+```
+📦CoroutinesTemplate/
+├── data/
+│   ├── remote/
+│   ├── repository/
+├── domain/
+│   ├── model/
+│   ├── repository/
+│   └── usecase/
+├── presentation/
+│   ├── ui/
+│   │   └── home/
+│   ├── viewmodel/
+│   └── components/
+├── di/
+├── util/
+└── MainActivity.kt
+```
 
 ---
 
