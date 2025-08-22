@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.mavapps.coroutinecraft"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.mavapps.coroutinecraft"

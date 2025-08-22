@@ -19,11 +19,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CoroutineCraftTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Scaffold(topBar = {
+                    Text(text = "CoroutineCraft")
+                }) { innerPadding ->
+                   MyApp(innerPadding)
                 }
             }
         }
@@ -31,17 +30,3 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CoroutineCraftTheme {
-        Greeting("Android")
-    }
-}
