@@ -7,7 +7,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.mavapps.coroutinecraft.ui.theme.CoroutineCraftTheme
 
 @Composable
-fun MyApp( modifier: Modifier = Modifier) {
+fun SplashScreen(modifier: Modifier = Modifier) {
     Text(
         text = "Hello World!",
         modifier = modifier
@@ -18,6 +18,6 @@ fun MyApp( modifier: Modifier = Modifier) {
 @Composable
 fun MyAppPreview() {
     CoroutineCraftTheme {
-       MyApp()
+       SplashScreen()
     }
 }
