@@ -20,8 +20,8 @@ import kotlinx.coroutines.delay
 
 
 @Composable
-fun SplashScreen( modifier: Modifier ) {
-    val navController = rememberNavController()
+fun SplashScreen(navController : NavController,  modifier: Modifier = Modifier) {
+
 
     LaunchedEffect(Unit) {
         delay(2000)
