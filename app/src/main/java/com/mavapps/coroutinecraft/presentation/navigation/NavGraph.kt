@@ -1,13 +1,15 @@
 package com.mavapps.coroutinecraft.presentation.navigation
 
-import com.mavapps.coroutinecraft.presentation.ui.chat.AIChatScreen
-import com.mavapps.coroutinecraft.presentation.ui.chathistory.HistoryScreen
-import com.mavapps.coroutinecraft.presentation.ui.settings.SettingsScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.mavapps.coroutinecraft.presentation.ui.changepassword.ChangePasswordScreen
+import com.mavapps.coroutinecraft.presentation.ui.forgotpassword.ForgotPasswordScreen
+import com.mavapps.coroutinecraft.presentation.ui.home.HomeScreen
+import com.mavapps.coroutinecraft.presentation.ui.signin.SignInScreen
+import com.mavapps.coroutinecraft.presentation.ui.signup.SignUpScreen
 import com.mavapps.coroutinecraft.presentation.ui.splash.SplashScreen
 
 @Composable
@@ -19,16 +21,27 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
         composable(SPLASH) {
             SplashScreen(navController = navController)
         }
+        composable(SIGN_IN) {
+            SignInScreen(navController = navController, modifier = modifier)
+        }
+        // Login ke baad yaha navigate karna hoga:
+        composable(HOME) {
+            HomeScreen(rootNavController = navController, modifier)
+        }
 
-        composable(BottomBarNavigation.AIChat.route) {
-            AIChatScreen()
+        composable(SIGN_UP) {
+            SignUpScreen(navController = navController, modifier = modifier)
         }
-        composable(BottomBarNavigation.History.route) {
-            HistoryScreen()
+        composable(FORGOT_PASSWORD) {
+            ForgotPasswordScreen(navController = navController, modifier = modifier)
         }
-        composable(BottomBarNavigation.Settings.route) {
-            SettingsScreen()
+        composable(CHANGE_PASSWORD) {
+            ChangePasswordScreen(navController = navController, modifier = modifier)
         }
+
+
+
     }
 }
+
 
