@@ -76,6 +76,7 @@ fun SettingsScreen(navController: NavHostController, modifier: Modifier) {
             SettingsOption("Clear Data", { })
             SettingsOption("Change Theme", { })
             SettingsOption("Share App", {})
+            SettingsOption("Logout", {})
 
             Spacer(modifier = Modifier.weight(1f))
 

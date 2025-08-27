@@ -4,7 +4,7 @@ plugins {
     id("kotlin-kapt") // Add this line
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.compose.compiler)
-
+    id("com.google.gms.google-services")
 
 }
 
@@ -76,5 +76,7 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.commonkit)
-
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.database)
 }

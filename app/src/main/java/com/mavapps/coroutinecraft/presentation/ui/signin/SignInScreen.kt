@@ -104,7 +104,10 @@ fun SignInScreen(navController: NavHostController, modifier: Modifier = Modifier
 
         // Sign In Button
         Button(
-            onClick = { /* TODO: Sign In */ },
+            onClick = {
+
+
+            },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Sign In")
@@ -114,7 +117,7 @@ fun SignInScreen(navController: NavHostController, modifier: Modifier = Modifier
 
         // Navigate to SignUp
         Row {
-            Text("No user? ")
+            Text("Not a user? ")
             Text(
                 text = "Sign Up",
                 color = MaterialTheme.colorScheme.primary,
