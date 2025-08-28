@@ -78,7 +78,7 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(
+         Button(
             onClick = { /* TODO: SignUp */ },
             modifier = Modifier.fillMaxWidth()
         ) {

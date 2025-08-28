@@ -10,13 +10,14 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.mavapps.coroutinecraft.presentation.navigation.NavGraph
 import com.mavapps.coroutinecraft.ui.theme.CoroutineCraftTheme
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-
         setContent {
             CoroutineCraftTheme {
                 val navController = rememberNavController()

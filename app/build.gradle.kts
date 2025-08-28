@@ -79,4 +79,8 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.database)
+    implementation(libs.firebase.auth)
+    //await() use ho raha hai because Firebase calls ko
+    // suspend function banane ke liye kotlinx-coroutines-play-services dependency add karni padti hai
+    implementation(libs.kotlinx.coroutines.play.services)
 }
