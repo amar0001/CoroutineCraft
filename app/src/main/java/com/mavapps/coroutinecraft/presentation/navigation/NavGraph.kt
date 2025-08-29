@@ -22,23 +22,22 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
             SplashScreen(navController = navController)
         }
         composable(SIGN_IN) {
-            SignInScreen(navController = navController, modifier = modifier)
+            SignInScreen(modifier = modifier, navController = navController)
         }
         // Login ke baad yaha navigate karna hoga:
         composable(HOME) {
-            HomeScreen(rootNavController = navController, modifier)
+            HomeScreen( modifier = modifier, rootNavController = navController)
         }
 
         composable(SIGN_UP) {
-            SignUpScreen(navController = navController, modifier = modifier)
+            SignUpScreen(modifier = modifier, navController = navController)
         }
         composable(FORGOT_PASSWORD) {
-            ForgotPasswordScreen(navController = navController, modifier = modifier)
+            ForgotPasswordScreen( modifier = modifier, navController = navController)
         }
         composable(CHANGE_PASSWORD) {
-            ChangePasswordScreen(navController = navController, modifier = modifier)
+            ChangePasswordScreen( modifier = modifier, navController = navController)
         }
-
 
 
     }

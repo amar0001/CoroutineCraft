@@ -1,7 +1,9 @@
 package com.mavapps.coroutinecraft.di
 
+import com.mavapps.coroutinecraft.domain.usecase.PasswordsMatchUseCase
 import com.mavapps.coroutinecraft.domain.usecase.ValidateEmailUseCase
 import com.mavapps.coroutinecraft.domain.usecase.ValidatePasswordUseCase
+import com.mavapps.coroutinecraft.domain.usecase.ValidateUsernameUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,4 +21,14 @@ object UseCaseModule {
     @Provides
     @Singleton
     fun provideValidatePasswordUseCase(): ValidatePasswordUseCase = ValidatePasswordUseCase()
+
+    @Provides
+    @Singleton
+    fun providePasswordsMatchUseCase(): PasswordsMatchUseCase = PasswordsMatchUseCase()
+
+
+    @Provides
+    @Singleton
+    fun provideValidateUsernameUseCase(): ValidateUsernameUseCase = ValidateUsernameUseCase()
+
 }

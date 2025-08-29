@@ -14,19 +14,41 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.mavapps.commonkit.widgets.SimpleText
+import androidx.navigation.compose.rememberNavController
+import com.mavapps.commonkit.widgets.ErrorMessage
+import com.mavapps.commonkit.widgets.ProgressLoader
 import com.mavapps.coroutinecraft.presentation.navigation.SIGN_IN
+import com.mavapps.coroutinecraft.presentation.navigation.SIGN_UP
 
 @Composable
-fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier) {
+fun SignUpScreen(modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController(),
+    viewModel: SignUpViewModel = hiltViewModel()
+) {
+
+    val uiState by viewModel.uiState.collectAsState()
+    val signinUiState by viewModel.signUpApiUiState.collectAsState()
+
+    if (signinUiState.isLoading) {
+        ProgressLoader()
+    } else if (signinUiState.isLoginSuccess) {
+        navController.navigate(SIGN_IN) {
+            popUpTo(SIGN_UP) { inclusive = true }
+        }
+    } else {
+        signinUiState.errorMessage?.let { ErrorMessage(it) }
+    }
+
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -47,42 +69,79 @@ fun SignUpScreen(navController: NavHostController, modifier: Modifier = Modifier
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Same as SignIn form
-        var email by remember { mutableStateOf("") }
+
         OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
+            value = uiState.username,
+            onValueChange = { viewModel.onUserNameChanged(it) },
+            label = { Text("Username") },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        if (uiState.usernameError != null) {
+            Text(
+                text = uiState.usernameError!!,
+                color = Color.Red,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = uiState.email,
+            onValueChange = { viewModel.onEmailChanged(it) },
             label = { Text("Email") },
             modifier = Modifier.fillMaxWidth()
         )
 
+        if (uiState.emailError != null) {
+            Text(
+                text = uiState.emailError!!,
+                color = Color.Red,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
         Spacer(modifier = Modifier.height(8.dp))
 
-        var password by remember { mutableStateOf("") }
+
         OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
+            value = uiState.password,
+            onValueChange = { viewModel.onPasswordChanged(it) },
             label = { Text("Password") },
             modifier = Modifier.fillMaxWidth()
         )
-
+        if (uiState.passwordError != null) {
+            Text(
+                text = uiState.passwordError!!,
+                color = Color.Red,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
         Spacer(modifier = Modifier.height(8.dp))
 
-        var confirmPassword by remember { mutableStateOf("") }
+
         OutlinedTextField(
-            value = confirmPassword,
-            onValueChange = { confirmPassword = it },
+            value = uiState.confirmPassword,
+            onValueChange = { viewModel.onConfirmPasswordChanged(it) },
             label = { Text("Confirm Password") },
             modifier = Modifier.fillMaxWidth()
         )
 
+        if (uiState.confirmPasswordError != null) {
+            Text(
+                text = uiState.confirmPasswordError!!,
+                color = Color.Red,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
+
         Spacer(modifier = Modifier.height(16.dp))
 
-         Button(
-            onClick = { /* TODO: SignUp */ },
+        Button(
+            onClick = { viewModel.validateSignUp() },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Sign Up")
         }
     }
 }
+

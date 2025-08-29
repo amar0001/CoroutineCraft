@@ -83,4 +83,5 @@ dependencies {
     //await() use ho raha hai because Firebase calls ko
     // suspend function banane ke liye kotlinx-coroutines-play-services dependency add karni padti hai
     implementation(libs.kotlinx.coroutines.play.services)
+    implementation(libs.google.firebase.firestore.ktx)
 }

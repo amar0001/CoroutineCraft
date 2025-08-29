@@ -2,6 +2,7 @@ package com.mavapps.coroutinecraft.data.repository
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class AuthRepository {
@@ -16,4 +17,42 @@ class AuthRepository {
             Result.failure(e)
         }
     }
+
+    suspend fun signUpUser(
+        username: String,
+        email: String,
+        password: String
+    ): Result<Boolean> {
+        return try {
+            val authResult = FirebaseAuth.getInstance()
+                .createUserWithEmailAndPassword(email, password)
+                .await()
+
+            // Get user ID from Firebase
+            val uid = authResult.user?.uid
+
+            if (uid != null) {
+                val userMap = mapOf(
+                    "uid" to uid,
+                    "email" to email,
+                    "username" to username
+                )
+
+
+                // Save user data in Firestore
+                FirebaseFirestore.getInstance()
+                    .collection("users")
+                    .document(uid)
+                    .set(userMap)
+                    .await()
+
+                Result.success(true)
+            } else {
+                Result.failure(Exception("User ID is null"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
 }
