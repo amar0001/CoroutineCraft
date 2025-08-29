@@ -6,5 +6,5 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun HistoryScreen(modifier: Modifier, navController: NavHostController) {
-    TODO("Not yet implemented")
+
 }

@@ -22,7 +22,7 @@ class AuthRepository {
         username: String,
         email: String,
         password: String
-    ): Result<Boolean> {
+    ): Result<String> {
         return try {
             val authResult = FirebaseAuth.getInstance()
                 .createUserWithEmailAndPassword(email, password)
@@ -46,7 +46,7 @@ class AuthRepository {
                     .set(userMap)
                     .await()
 
-                Result.success(true)
+                Result.success("User Successfully Created")
             } else {
                 Result.failure(Exception("User ID is null"))
             }

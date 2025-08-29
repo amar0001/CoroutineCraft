@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -46,15 +47,7 @@ fun SignInScreen(
     val uiState by viewModel.uiState.collectAsState()
     val loginUiState by viewModel.loginApiUiState.collectAsState()
 
-    if (loginUiState.isLoading) {
-        ProgressLoader()
-    } else if (loginUiState.isLoginSuccess) {
-        navController.navigate(HOME) {
-            popUpTo(SIGN_IN) { inclusive = true }
-        }
-    } else {
-        loginUiState.errorMessage?.let { ErrorMessage(it) }
-    }
+
 
     Column(
         modifier = modifier
@@ -163,6 +156,22 @@ fun SignInScreen(
         }
 
         Spacer(modifier = Modifier.height(16.dp))
+        if (loginUiState.isLoading) {
+            CircularProgressIndicator()
+        } else if (loginUiState.isLoginSuccess) {
+            navController.navigate(HOME) {
+                popUpTo(SIGN_IN) { inclusive = true }
+            }
+        } else {
+            loginUiState.errorMessage?.let {
+
+                Text(
+                    text = loginUiState.errorMessage!!,
+                    color = Color.Red,
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
+        }
 
         // Navigate to SignUp
         Row {

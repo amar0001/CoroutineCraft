@@ -60,12 +60,13 @@ class SignUpViewModel @Inject constructor(
     }
 
     fun validateSignUp() {
-        val userNameResult = usernameUseCase(_uiState.value.email)
+        val userNameResult = usernameUseCase(_uiState.value.username)
         val emailResult = validateEmailUseCase(_uiState.value.email)
         val passwordResult = validatePasswordUseCase(_uiState.value.password)
         val confirmPasswordResult = passwordsMatchUseCase(_uiState.value.password, _uiState.value.confirmPassword)
         val hasError = listOf(userNameResult, emailResult, passwordResult, confirmPasswordResult).any { !it.successful }
         _uiState.value = _uiState.value.copy(
+            usernameError = userNameResult.errorMessage,
             emailError = emailResult.errorMessage,
             passwordError = passwordResult.errorMessage,
             confirmPasswordError = confirmPasswordResult.errorMessage,
@@ -79,9 +80,7 @@ class SignUpViewModel @Inject constructor(
     fun signUpUser(username : String, email: String, password: String) {
         viewModelScope.launch {
             _signUpApiUiState.value = _signUpApiUiState.value.copy(isLoading = true)
-
             val result = repository.signUpUser(username, email, password)
-
             if (result.isSuccess) {
                 _signUpApiUiState.value = _signUpApiUiState.value.copy(
                     isLoading = false,

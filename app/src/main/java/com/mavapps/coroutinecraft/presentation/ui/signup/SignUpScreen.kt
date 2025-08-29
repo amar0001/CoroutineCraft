@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -38,15 +39,7 @@ fun SignUpScreen(modifier: Modifier = Modifier,
     val uiState by viewModel.uiState.collectAsState()
     val signinUiState by viewModel.signUpApiUiState.collectAsState()
 
-    if (signinUiState.isLoading) {
-        ProgressLoader()
-    } else if (signinUiState.isLoginSuccess) {
-        navController.navigate(SIGN_IN) {
-            popUpTo(SIGN_UP) { inclusive = true }
-        }
-    } else {
-        signinUiState.errorMessage?.let { ErrorMessage(it) }
-    }
+
 
 
     Column(
@@ -92,6 +85,7 @@ fun SignUpScreen(modifier: Modifier = Modifier,
             label = { Text("Email") },
             modifier = Modifier.fillMaxWidth()
         )
+
 
         if (uiState.emailError != null) {
             Text(
@@ -142,6 +136,21 @@ fun SignUpScreen(modifier: Modifier = Modifier,
         ) {
             Text("Sign Up")
         }
+
+        if (signinUiState.isLoading) {
+            CircularProgressIndicator()
+        } else if (signinUiState.isLoginSuccess) {
+            navController.navigate(SIGN_IN) {
+                popUpTo(SIGN_UP) { inclusive = true }
+            }
+        } else {
+            signinUiState.errorMessage?.let {   Text(
+                text = signinUiState.errorMessage!!,
+                color = Color.Red,
+                style = MaterialTheme.typography.bodySmall
+            ) }
+        }
+
     }
 }
 
