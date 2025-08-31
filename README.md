@@ -1,6 +1,6 @@
 # 🌀 CoroutineCraft
 
-A clean and modular Jetpack Compose Android starter template built to master Kotlin Coroutines and Clean Architecture — ideal for Android Leads, Senior Developers, or interview prep.
+A clean and modular AI chat app using Jetpack Compose Android starter template built to master Kotlin Coroutines and Clean Architecture — ideal for Android Leads, Senior Developers, or interview prep.
 
 ---
 
